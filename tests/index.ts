@@ -42,6 +42,6 @@ const stringCleaner = new StripWhitespace();
   const code = `const longString = '      "x"          ';`;
   const result = stringCleaner.strip(code);
 
-  ok(result.code.indexOf(`" \\"x\\" "`) > -1, `it did not handle escaping quotes.  Result: ${result.code}`);
+  ok(result.code.indexOf(` = " \\"x\\" "`) > -1, `it did not handle escaping quotes.  Result: ${result.code}`);
 }
 
