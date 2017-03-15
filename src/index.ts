@@ -1,5 +1,13 @@
 import { createSourceFile, forEachChild, Node, ScriptTarget, StringLiteral, SyntaxKind } from 'typescript';
 
+export interface StripWhitespaceOptions {
+  shouldStripWhitespace?: ShouldStripWhitespace;
+}
+
+export interface ShouldStripWhitespace {
+  (value: string): boolean;
+}
+
 export interface StringReplacement {
   end: number;
   start: number;
@@ -12,6 +20,13 @@ export interface Result {
 }
 
 export default class StripWhitespace {
+  private options: StripWhitespaceOptions;
+  private shouldStripWhitespace: ShouldStripWhitespace;
+
+  constructor(options: StripWhitespaceOptions = {}) {
+    this.options = options;
+    this.shouldStripWhitespace = options.shouldStripWhitespace ? options.shouldStripWhitespace : returnTrue;
+  }
 
   public strip(code: string): Result {
     const sourceFile = createSourceFile('', code, ScriptTarget.Latest, true);
@@ -44,16 +59,19 @@ export default class StripWhitespace {
         }
       }
 
-      const stringNode = node as StringLiteral;
-      const text = stringNode.text;
+      const text = (node as StringLiteral).text;
+      if (!this.shouldStripWhitespace(text)) {
+        return;
+      }
+
       const strippedText = this.stripString(text);
       if (text === strippedText) {
         return;
       }
 
       stringList.push({
-        end: stringNode.getEnd(),
-        start: stringNode.getStart(),
+        end: node.getEnd(),
+        start: node.getStart(),
         text: this.formatString(strippedText)
       });
     });
@@ -85,4 +103,8 @@ export default class StripWhitespace {
     };
     return walker;
   }
+}
+
+function returnTrue() {
+  return true;
 }

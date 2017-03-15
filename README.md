@@ -5,7 +5,7 @@
 Strip-Whitespace will remove extraneous spaces from strings. It's perfect for working with rendering templates (ex. mustache, handlebars) or es6 javascript templates. It works with anything where you might create very long strings.
 
 ##### Before strip-whitespace:
-```
+``` javascript
 function() {
   if (condition) {
     const longString = '  String   with    some    extra   spaces  ';
@@ -14,7 +14,7 @@ function() {
 ```
 
 ##### After strip-whitespace:
-```
+``` javascript
 function() {
   if (condition) {
     const longString = ' String with some extra spaces ';
@@ -23,17 +23,31 @@ function() {
 ```
 
 ##### Command-line usage
-```
-strip-whitespace
-
-Usage: strip-whitespace --input <file> --output <file>
+``` shell
+$ strip-whitespace --input <input-file> --output <output-file>
 ```
 
 ##### Javascript usage
-```
-var stripWhitespace = require('strip-whitespace');
+``` javascript
+var StripWhitespace = require('strip-whitespace');
 
+// options are optional and can be omitted
+var stripWhitespace = new StripWhitespace(options);
 var result = stripWhitespace.strip(code);
 
+// do things with the code
 code = result.code;
+```
+
+##### Options
+
+All options are optional
+
+``` javascript
+{
+  shouldStripWhitespace: (value: String) => {
+    // evaluate conditions against the string in the code and then return true/false
+    return true;
+  }
+}
 ```
