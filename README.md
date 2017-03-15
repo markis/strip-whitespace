@@ -45,8 +45,12 @@ All options are optional
 
 ``` javascript
 {
-  shouldStripWhitespace: (value: String) => {
-    // evaluate conditions against the string in the code and then return true/false
+  shouldStripWhitespace: function(fatString) {
+    // following code will answer the question: should this string be stripped of whitespace?
+    if (fatString.startsWith('DO NOT MODIFY THIS STRING')) {
+      return false;
+    }
+
     return true;
   }
 }
