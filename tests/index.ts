@@ -50,5 +50,15 @@ const stringCleaner = new StripWhitespace();
 
   const result = stringCleaner.strip(code);
   ok(result.code.indexOf(`" x "`) > -1, `it did not handle escaping new lines.  Result: ${result.code}`);
+}
 
+
+{
+  // create string cleaner that won't clean any strings, because you know...testing
+  const badStringCleaner = new StripWhitespace({
+    shouldStripWhitespace: () => false
+  });
+  const code = `"   x   "`;
+  const result = badStringCleaner.strip(code);
+  ok(result.code.indexOf(`"   x   "`) > -1, `it did not override shouldStripWhitespace.  Result: ${result.code}`);
 }
