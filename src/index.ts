@@ -53,7 +53,7 @@ export default class StripWhitespace {
 
       stringList.push({
         end: stringNode.end,
-        start: stringNode.pos + 1, // zero-based positioning
+        start: stringNode.pos,
         text: this.formatString(strippedText)
       });
     });
