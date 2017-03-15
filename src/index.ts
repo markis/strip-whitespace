@@ -23,8 +23,8 @@ export default class StripWhitespace {
   private options: StripWhitespaceOptions;
   private shouldStripWhitespace: ShouldStripWhitespace;
 
-  constructor(options: StripWhitespaceOptions = {}) {
-    this.options = options;
+  constructor(options?: StripWhitespaceOptions) {
+    this.options = options = options ? options : {};
     this.shouldStripWhitespace = options.shouldStripWhitespace ? options.shouldStripWhitespace : returnTrue;
   }
 
