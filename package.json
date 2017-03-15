@@ -36,5 +36,6 @@
     "rollup": "^0.41.5",
     "rollup-plugin-typescript": "^0.8.1",
     "tslint": "^4.4.2"
-  }
+  },
+  "version": "0.0.1"
 }
