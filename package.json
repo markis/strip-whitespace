@@ -5,7 +5,7 @@
   "description": "Strip whitespace in strings from javascript assets",
   "main": "index.js",
   "scripts": {
-    "prepublish": "npm test && npm run build",
+    "prepublish": "in-publish && npm test && npm run build || not-in-publish ",
     "lint": "tslint -c tslint.json ./src/**/*.ts",
     "test": "npm run lint && rollup -c -o tests.js -i tests/index.ts && node tests.js",
     "build": "npm run build:index && npm run build:cli && npm run build:declarations",
@@ -34,6 +34,7 @@
   },
   "devDependencies": {
     "@types/node": "^7.0.8",
+    "in-publish": "^2.0.0",
     "rollup": "^0.41.5",
     "rollup-plugin-typescript": "^0.8.1",
     "tslint": "^4.4.2"
