@@ -14,7 +14,7 @@ export interface Result {
 export default class StripWhitespace {
 
   public strip(code: string): Result {
-    const sourceFile = createSourceFile('', code, ScriptTarget.Latest);
+    const sourceFile = createSourceFile('', code, ScriptTarget.Latest, true);
     const replacements = this.getStringReplacements(sourceFile);
 
     const sortedReplacements = this.sortReplacements(replacements);
@@ -52,8 +52,8 @@ export default class StripWhitespace {
       }
 
       stringList.push({
-        end: stringNode.end,
-        start: stringNode.pos + 1,
+        end: stringNode.getEnd(),
+        start: stringNode.getStart(),
         text: this.formatString(strippedText)
       });
     });
