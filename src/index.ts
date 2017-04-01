@@ -1,11 +1,9 @@
 import { createSourceFile, forEachChild, Node, ScriptTarget, StringLiteral, SyntaxKind } from 'typescript';
 
+export type ShouldStripWhitespace = (value: string) => boolean;
+
 export interface StripWhitespaceOptions {
   shouldStripWhitespace?: ShouldStripWhitespace;
-}
-
-export interface ShouldStripWhitespace {
-  (value: string): boolean;
 }
 
 export interface StringReplacement {
@@ -78,7 +76,7 @@ export default class StripWhitespace {
   private makeAllReplacements(code: string, replacements: StringReplacement[]): string {
     const codeBuffer = [];
     let cursor = 0;
-    for (let replacement of replacements) {
+    for (const replacement of replacements) {
       codeBuffer.push(code.substring(cursor, replacement.start));
       codeBuffer.push(replacement.text);
       cursor = replacement.end;
