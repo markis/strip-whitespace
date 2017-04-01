@@ -4,6 +4,9 @@
   "bin": ".bin/strip-whitespace",
   "description": "Strip whitespace in strings from javascript assets",
   "main": "index.js",
+  "engines": {
+    "node": ">= 4"
+  },
   "scripts": {
     "prepublish": "in-publish && npm test && npm run build || not-in-publish ",
     "lint": "tslint -c tslint.json ./src/**/*.ts",
@@ -18,7 +21,7 @@
     "url": "git+ssh://git@github.com/markis/strip-whitespace.git"
   },
   "files": [
-    ".bin/stip-whitespace",
+    ".bin/strip-whitespace",
     "cli.js",
     "index.d.ts",
     "index.js",
