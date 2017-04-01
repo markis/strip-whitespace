@@ -17,6 +17,14 @@
     "type": "git",
     "url": "git+ssh://git@github.com/markis/strip-whitespace.git"
   },
+  "files": [
+    ".bin/stip-whitespace",
+    "cli.js",
+    "index.d.ts",
+    "index.js",
+    "LICENSE.md",
+    "README.md"
+  ],
   "keywords": [
     "whitespace",
     "strings",

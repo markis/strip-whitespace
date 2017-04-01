@@ -41,10 +41,6 @@ export default class StripWhitespace {
     return fatString.replace(/[\s]+/g, ' ');
   }
 
-  private formatString(strippedString: string): string {
-    return JSON.stringify(strippedString);
-  }
-
   private getStringReplacements(startingNode: Node): StringReplacement[] {
     const stringList: StringReplacement[] = [];
     const walk = this.createWalker((node) => {
@@ -70,9 +66,9 @@ export default class StripWhitespace {
       }
 
       stringList.push({
-        end: node.getEnd(),
-        start: node.getStart(),
-        text: this.formatString(strippedText)
+        end: node.getEnd() - 1,
+        start: node.getStart() + 1,
+        text: strippedText
       });
     });
     walk(startingNode);
