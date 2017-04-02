@@ -9,3 +9,4 @@ tmp/
 /test.js
 /test-file.min.js
 /cli.js
+*.map

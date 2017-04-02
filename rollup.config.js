@@ -6,6 +6,7 @@ module.exports = {
   format: 'cjs',
   moduleId: 'strip-whitespace',
   moduleName: 'strip-whitespace',
+  sourceMap: true,
   external: [
     'assert',
     'fs',
