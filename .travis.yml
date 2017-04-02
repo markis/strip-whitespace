@@ -2,8 +2,6 @@ language: node_js
 
 node_js:
 # legacy node
-- '0.6'
-- '0.8'
 - '0.12'
 # iojs
 - '1'
@@ -27,8 +25,20 @@ before_install:
 install:
 - npm install
 
+# install code-coverage (node >0.12)
+- npm install if-ver -g
+- if-ver -gt 0.12 && npm install codacy-coverage istanbul -g || return 0
+
 script:
+# unit tests
 - npm test
+
+# integration tests
+- npm run build:cli
+- node ./cli.js --input ./test/test-file.js --output ./test/test-file.min.js
+
+# code coverage and upload to codacy (node >0.12)
+- (if-ver -gt 0.12 && istanbul cover test.js --report lcovonly && cat ./coverage/lcov.info | codacy-coverage) || return 0
 
 deploy:
   provider: npm
