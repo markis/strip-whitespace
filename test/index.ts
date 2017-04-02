@@ -59,9 +59,9 @@ const stringCleaner = new StripWhitespace();
 
 {
   const code = `var y = { "do not strip  ": "should be stripped      " }`;
-
+  const expectedResult = `var y = { "do not strip  ": "should be stripped " }`;
   const result = stringCleaner.strip(code);
-  ok(result.code.indexOf(`var y = { "do not strip  ": "should be stripped " }`) > -1, `it did object keys.  Result: ${result.code}`);
+  ok(result.code === expectedResult, `it did object keys.  Result: ${result.code}`);
 }
 
 {
@@ -75,4 +75,4 @@ const stringCleaner = new StripWhitespace();
 }
 
 // if we arrived here, then the tests passed
-console.log('All tests passed!  Woohoo!')
+console.log('All tests passed!  Woohoo!');
