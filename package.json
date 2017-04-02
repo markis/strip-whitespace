@@ -1,6 +1,6 @@
 {
   "name": "strip-whitespace",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "bin": ".bin/strip-whitespace",
   "description": "Strip whitespace in strings from javascript assets",
   "main": "index.js",
