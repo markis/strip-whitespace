@@ -27,7 +27,7 @@ install:
 
 # install code-coverage (node >0.12)
 - npm install if-ver -g
-- if-ver -gt 0.12 && npm install codacy-coverage istanbul -g || return 0
+- if-ver -gt 0.12 && npm install codacy-coverage coveralls istanbul remap-istanbul -g || return 0
 
 script:
 # unit tests
