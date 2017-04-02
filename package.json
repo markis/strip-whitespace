@@ -29,6 +29,7 @@
     "index.d.ts",
     "index.js",
     "LICENSE.md",
+    "package.json",
     "README.md"
   ],
   "keywords": [
