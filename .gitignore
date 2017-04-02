@@ -1,9 +1,11 @@
 built/
+coverage/
 node_modules/
 tmp/
 .idea/
 .vscode/
 /index.js
 /index.d.ts
-/tests.js
+/test.js
+/test-file.min.js
 /cli.js

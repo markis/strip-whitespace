@@ -5,16 +5,20 @@
   "description": "Strip whitespace in strings from javascript assets",
   "main": "index.js",
   "engines": {
-    "node": ">= 4"
+    "node": ">= 0.12"
   },
   "scripts": {
     "prepublish": "in-publish && npm test && npm run build || not-in-publish ",
-    "lint": "tslint -c tslint.json ./src/**/*.ts",
-    "test": "npm run lint && rollup -c -o tests.js -i tests/index.ts && node tests.js",
+    "lint": "if-ver -ge 4 && tslint -c tslint.json ./src/**/*.ts || return 0",
+    "test": "npm run lint && npm run build:test && npm run test:unit && npm run test:integration && npm run test:coverage",
+    "test:unit": "node test.js",
+    "test:coverage": "if-ver -ge 4 && istanbul cover test.js || return 0",
+    "test:integration": "strip-whitespace --input ./test-file.js --output ./test-file.min.js",
     "build": "npm run build:index && npm run build:cli && npm run build:declarations",
     "build:declarations": "tsc -d && mv tmp/src/index.d.ts ./index.d.ts",
-    "build:index": "rollup -c -o index.js -i src/index.ts",
-    "build:cli": "rollup -c -o cli.js -i src/cli.ts"
+    "build:index": "if-ver -ge 0.12 && rollup -c -o index.js -i src/index.ts || return 0",
+    "build:cli": "if-ver -ge 0.12 && rollup -c -o cli.js -i src/cli.ts || return 0",
+    "build:test": "if-ver -ge 0.12 && rollup -c -o test.js -i test/index.ts || return 0"
   },
   "repository": {
     "type": "git",
@@ -45,7 +49,10 @@
   },
   "devDependencies": {
     "@types/node": "^7.0.8",
+    "check-node-version": "^2.0.1",
+    "if-ver": "^1.0.5",
     "in-publish": "^2.0.0",
+    "istanbul": "^0.4.5",
     "rollup": "^0.41.5",
     "rollup-plugin-typescript": "^0.8.1",
     "tslint": "^4.5.1"
