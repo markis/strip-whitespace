@@ -25,11 +25,17 @@ function processFiles(opt: CLIOptions) {
       } else {
         const stripWhitespace = new StripWhitespace();
         const cleanCode = stripWhitespace.strip(code).code;
-        writeFile(opt.output, cleanCode);
+        writeFile(opt.output, cleanCode, handleError);
       }
     });
   } else {
     printHelp();
+  }
+}
+
+function handleError(err: NodeJS.ErrnoException) {
+  if (err) {
+    console.error(err);
   }
 }
 
