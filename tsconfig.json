@@ -2,7 +2,7 @@
   "compilerOptions": {
     "module": "commonjs",
     "target": "es5",
-    "outDir": "tmp",
+    "outDir": "built",
     "lib": [ "es6" ],
     "noImplicitAny": true,
     "sourceMap": true,

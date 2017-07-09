@@ -13,8 +13,9 @@
     "test": "npm run lint && npm run build:test && npm run test:unit && npm run test:coverage",
     "test:unit": "node test.js",
     "test:coverage": "if-ver -ge 4 && istanbul cover test.js || return 0",
-    "build": "npm run build:index && npm run build:cli && npm run build:declarations",
-    "build:declarations": "tsc -d && mv tmp/src/index.d.ts ./index.d.ts",
+    "build": "npm run build:ts && npm run build:index && npm run build:cli && npm run build:declarations",
+    "build:ts": "tsc --outDir ./built",
+    "build:declarations": "mv built/src/index.d.ts ./index.d.ts",
     "build:index": "if-ver -ge 0.12 && rollup -c -o index.js -i src/index.ts || return 0",
     "build:cli": "if-ver -ge 0.12 && rollup -c -o cli.js -i src/cli.ts || return 0",
     "build:test": "if-ver -ge 0.12 && rollup -c -o test.js -i test/index.ts || return 0"

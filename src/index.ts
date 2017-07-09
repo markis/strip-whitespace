@@ -18,12 +18,12 @@ export interface Result {
 }
 
 export default class StripWhitespace {
-  private options: StripWhitespaceOptions;
   private shouldStripWhitespace: ShouldStripWhitespace;
 
-  constructor(options?: StripWhitespaceOptions) {
-    this.options = options = options ? options : {};
-    this.shouldStripWhitespace = options.shouldStripWhitespace ? options.shouldStripWhitespace : returnTrue;
+  constructor(
+    options: StripWhitespaceOptions = {},
+  ) {
+    this.shouldStripWhitespace = options.shouldStripWhitespace || returnTrue;
   }
 
   public strip(code: string): Result {
