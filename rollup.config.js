@@ -4,8 +4,7 @@ module.exports = {
   entry: './src/index.ts',
   dest: 'index.js',
   format: 'cjs',
-  moduleId: 'strip-whitespace',
-  moduleName: 'strip-whitespace',
+  moduleName: 'StripWhitespace',
   sourceMap: true,
   external: [
     'assert',
