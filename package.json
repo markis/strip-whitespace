@@ -53,7 +53,7 @@
     "if-ver": "^1.0.6",
     "in-publish": "^2.0.0",
     "istanbul": "^0.4.5",
-    "rollup": "^0.43.0",
+    "rollup": "^0.45.2",
     "rollup-plugin-typescript": "^0.8.1",
     "tslint": "^5.1.0"
   }
