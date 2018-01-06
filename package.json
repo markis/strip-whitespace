@@ -46,15 +46,15 @@
   },
   "homepage": "https://github.com/markis/strip-whitespace#readme",
   "dependencies": {
-    "typescript": "^2.2.1"
+    "typescript": "^2.6.2"
   },
   "devDependencies": {
-    "@types/node": "^8.0.9",
+    "@types/node": "^8.5.7",
     "if-ver": "^1.0.6",
     "in-publish": "^2.0.0",
     "istanbul": "^0.4.5",
-    "rollup": "^0.45.2",
+    "rollup": "^0.53.3",
     "rollup-plugin-typescript": "^0.8.1",
-    "tslint": "^5.1.0"
+    "tslint": "^5.8.0"
   }
 }
